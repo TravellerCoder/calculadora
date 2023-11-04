@@ -10,7 +10,11 @@ botonesNumeros.forEach(boton => {
         display.agregarNumero(boton.innerHTML)
         
     });
-}); 
-const calculadora = new Calculadora()
-console.log(calculadora.sumar(2,3))
+});
+
+botonesOperadores.forEach(boton => {
+    boton.addEventListener('click', () => {
+        display.computar(boton.value)
+    })
+})
 

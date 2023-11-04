@@ -5,7 +5,14 @@ class Display {
         this.calculadora = new Calculadora();
         this.tipoDeOperacion = undefined
         this.valorActual = "";
-        this.valorAnterior = ""
+        this.valorAnterior = "";
+        this.signos = {
+            sumar : '+',
+            restar : '-',
+            multiplicar : 'X',
+            dividir : '%'
+
+        }
     }
 
     agregarNumero(numero) {
@@ -26,9 +33,24 @@ class Display {
         this.imprimirValores()
     }
 
+    computar(tipo) {
+        this.tipoDeOperacion !== 'igual' && this.calcular()
+        this.tipoDeOperacion = tipo;
+        this.valorAnterior = this.valorActual || this.valorAnterior;
+        this.valorActual = '';
+        this.imprimirValores()
+    }
+
+    calcular() {
+        const valorAnterior = parseFloat(this.valorAnterior);       
+        const valorActual = parseFloat(this.valorActual);
+        
+        if(isNaN(valorActual) || isNaN(valorAnterior)) return 
+        this.valorActual = this.calculadora[this.tipoDeOperacion](valorAnterior, valorActual)
+    }
 
     imprimirValores() {
         this.displayValorActual.textContent = this.valorActual;
-        this.displayValorAnterior.textContent = this.valorAnterior;
+        this.displayValorAnterior.textContent =  `${this.valorAnterior} ${this.signos[this.tipoDeOperacion] || ''}`;
     }
 }

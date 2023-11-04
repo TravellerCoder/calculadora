@@ -3,11 +3,18 @@ class Display {
         this.displayValorActual = displayValorActual;
         this.displayValorAnterior = displayValorAnterior;
         this.calculadora = new Calculadora();
-        this.displayValorActual = "";
-        this.displayValorAnterior = ""
+        this.valorActual = "";
+        this.valorAnterior = ""
     }
 
     agregarNumero(numero) {
-        this.valorActual = numero; 
+        if (numero === '.' && this.valorActual.includes('.')) return
+        this.valorActual = this.valorActual + numero; 
+        this.imprimirValores();
+    }
+
+    imprimirValores() {
+        this.displayValorActual.textContent = this.valorActual;
+        this.displayValorAnterior.textContent = this.valorAnterior;
     }
 }

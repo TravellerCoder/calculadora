@@ -46,7 +46,10 @@ class Display {
         const valorActual = parseFloat(this.valorActual);
         
         if(isNaN(valorActual) || isNaN(valorAnterior)) return 
-        this.valorActual = this.calculadora[this.tipoDeOperacion](valorAnterior, valorActual)
+        this.valorActual = this.calculadora[this.tipoDeOperacion](valorAnterior, valorActual);
+        this.valorActual = this.calculadora[this.tipoDeOperacion](valorAnterior, valorActual).toString();
+        
+
     }
 
     imprimirValores() {
